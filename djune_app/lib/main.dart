@@ -7,7 +7,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +29,8 @@ class MyApp extends StatelessWidget {
 
 class UniversitySelectionPage extends StatelessWidget {
   final universities = ['University A', 'University B', 'University C'];
+
+  UniversitySelectionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +56,8 @@ class UniversitySelectionPage extends StatelessWidget {
 
 class SchoolSelectionPage extends StatelessWidget {
   final schools = ['School X', 'School Y', 'School Z'];
+
+  SchoolSelectionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +87,8 @@ class ServicesPage extends StatelessWidget {
     {'name': 'Service 2', 'url': 'https://example.com/service2'},
     {'name': 'Service 3', 'url': 'https://example.com/service3'},
   ];
+
+  ServicesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -126,9 +132,10 @@ class ServicesPage extends StatelessWidget {
   void _openWhatsApp() async {
     const phoneNumber =
         '22991724377'; // Remplacez par votre numéro de téléphone WhatsApp
-    final url = "https://wa.me/$phoneNumber";
-    if (await canLaunch(url)) {
-      await launch(url);
+    final Uri url = Uri.parse('https://wa.me/$phoneNumber');
+    //const url = "https://wa.me/$phoneNumber";
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
     } else {
       throw 'Could not launch $url';
     }
